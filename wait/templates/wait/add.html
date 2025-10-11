@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    افزودن لیست انتظار
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'wait/add.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div class="container orange-form" dir="rtl">
+        <h2>افزودن به لیست انتظار</h2>
+        <form method="POST" action="{% url 'wait:wait_add' %}">
+            {% csrf_token %}
+            <div class="form-fields">
+                {{ form }}
+            </div>
+            <button type="submit" class="btn-orange">افزودن</button>
+        </form>
+    </div>
+{% endblock %}

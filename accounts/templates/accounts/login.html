@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>ورود</title>
+    <link rel="stylesheet" href="{% static 'accounts/login.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="login-container shadow-lg">
+    <h2>ورود به حساب</h2>
+
+    <!-- global non-field errors (e.g. wrong password) -->
+{% include 'messages.html' %}
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+
+        <!-- phone field -->
+        <div class="form-group">
+            {% if form.phone_number.errors %}
+                {% for error in form.phone_number.errors %}
+                    <small class="invalid-feedback d-block" style="margin-bottom: 8px">{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+            {{ form.phone_number.label_tag }}
+            {{ form.phone_number }}
+
+        </div>
+
+        <!-- password field -->
+        <div class="form-group">
+            {% if form.password.errors %}
+                {% for error in form.password.errors %}
+                    <small class="invalid-feedback d-block" style="margin-bottom: 8px">{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+            {{ form.password.label_tag }}
+            {{ form.password }}
+
+        </div>
+
+        <!-- remember me -->
+        <div class="checkbox-container">
+            {{ form.remember_me }} {{ form.remember_me.label_tag }}
+        </div>
+
+        <button type="submit" class="login-btn">ورود</button>
+
+        <div class="extra-links">
+            <a href="{% url 'accounts:password_reset' %}">رمز عبور را فراموش کرده‌اید؟</a>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

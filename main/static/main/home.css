@@ -1,0 +1,82 @@
+
+
+/* Main container */
+.jumbotron {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+}
+
+/* Cards grid */
+.cards-container {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Shared card styles */
+.menu-card,
+.profile-card {
+    background: linear-gradient(135deg, #fff5e6 0%, #ffedd1 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(255, 140, 0, 0.15);
+    width: 230px;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.menu-card:hover,
+.profile-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(255, 140, 0, 0.25);
+}
+
+/* Images inside cards */
+.menu-card img,
+.profile-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-top: 20px;
+}
+
+/* Links */
+.menu-link,
+.profile-link {
+    text-decoration: none;
+    background-color: #ff8c00;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-link:hover,
+.profile-link:hover {
+    background-color: #ff7300;
+    transform: scale(1.05);
+}
+
+/* Optional subtle floating animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.menu-card:hover img,
+.profile-card:hover img {
+    animation: float 1.5s ease-in-out infinite;
+}

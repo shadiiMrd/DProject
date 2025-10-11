@@ -1,0 +1,69 @@
+/* Container styling */
+.orange-form {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #fff8f0;
+    border: 1px solid #ffb366;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+/* Title */
+.orange-form h2 {
+    color: #ff6600;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+/* Django form fields */
+.orange-form .form-fields input,
+.orange-form .form-fields select,
+.orange-form .form-fields textarea {
+    width: 100%;
+    padding: 10px 14px;
+    margin: 10px 0;
+    border: 1px solid #ff9933;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: 0.3s;
+    font-size: 0.95rem;
+}
+
+.orange-form .form-fields input:focus,
+.orange-form .form-fields select:focus,
+.orange-form .form-fields textarea:focus {
+    border-color: #ff6600;
+    box-shadow: 0 0 6px rgba(255, 102, 0, 0.4);
+    outline: none;
+}
+
+/* Orange button */
+.btn-orange {
+    width: 100%;
+    background: linear-gradient(135deg, #ff8000, #ff6600);
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-orange:hover {
+    background: linear-gradient(135deg, #ff9933, #ff6600);
+    box-shadow: 0 4px 10px rgba(255, 102, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .orange-form {
+        padding: 15px;
+    }
+    .btn-orange {
+        font-size: 0.9rem;
+    }
+}

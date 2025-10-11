@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}صفحه اصلی{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'main/home.css' %}">
+{% endblock %}
+
+
+
+{% block body %}
+    <div class="jumbotron">
+        <div class="cards-container">
+
+            <!-- Menu Card -->
+            <div class="menu-card">
+                <img src="{% static 'images/menu.png' %}" alt="Cafe Menu">
+                <div>
+                    <a href="{% url 'main:menu' %}" class="menu-link">
+                        🍊 منو
+                    </a>
+                </div>
+            </div>
+
+            <!-- Profile Card -->
+            <div class="profile-card">
+                <img src="{% static 'images/profile.png' %}" alt="User Profile">
+                <div>
+                    <a href="{% url 'accounts:profile' %}" class="profile-link">
+                        👤 پروفایل
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+

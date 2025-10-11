@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}منو{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'main/menu.css' %}">
+{% endblock %}
+
+
+
+
+{% block body %}
+<div class="container" dir="rtl">
+
+        <div class="menu-tabs">
+            <button class="tab-btn active" data-category="all">همه</button>
+            {% for category in categories %}
+                <button class="tab-btn" data-category="{{ category.id }}">{{ category.name }}</button>
+            {% endfor %}
+        </div>
+
+        <div class="menu-content">
+            {% for category in categories %}
+                <div class="category" data-category="{{ category.id }}">
+                    <h2 class="category-title">{{ category.name }}</h2>
+                    <div class="menu-items">
+                        {% for menu in menus %}
+                            {% if menu.category.id == category.id %}
+                                <div class="menu-item">
+                                    <div class="item-image">
+                                        <img src="{{ menu.image.url }}" alt="{{ menu.name }}">
+                                    </div>
+                                    <div class="item-info">
+                                        <div class="item-header">
+                                            <h3 class="item-name">{{ menu.name }}</h3>
+                                            <span class="item-price">{{ menu.price }} تومان</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const categories = document.querySelectorAll('.category');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+
+                    // Add active class to clicked button
+                    button.classList.add('active');
+
+                    const categoryId = button.getAttribute('data-category');
+
+                    // Show all categories if "all" is selected
+                    if (categoryId === 'all') {
+                        categories.forEach(category => {
+                            category.style.display = 'block';
+                        });
+                    } else {
+                        // Hide all categories first
+                        categories.forEach(category => {
+                            category.style.display = 'none';
+                        });
+
+                        // Show only the selected category
+                        const selectedCategory = document.querySelector(`.category[data-category="${categoryId}"]`);
+                        if (selectedCategory) {
+                            selectedCategory.style.display = 'block';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

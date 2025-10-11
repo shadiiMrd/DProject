@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Messages with Auto-Close</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'messages.css' %}">
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container" dir="rtl">
+    {% if messages %}
+        {% for msg in messages %}
+            <div class="alert alert-{{ msg.tags }} alert-dismissible fade show auto-close" role="alert" dir="rtl">
+                {{ msg }}
+                <button type="button" class="close" onclick="closeAlert(this)" aria-label="Close" dir="rtl">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<script>
+    // Function to manually close alerts
+    function closeAlert(button) {
+        const alertDiv = button.closest('.alert');
+        $(alertDiv).alert('close');
+    }
+    
+    // Auto-close alerts after 10 seconds
+    $(document).ready(function() {
+        $('.auto-close').each(function(index, element) {
+            setTimeout(function() {
+                $(element).alert('close');
+            }, 5000); // 10,000 milliseconds = 10 seconds
+        });
+    });
+</script>
+</body>
+</html>

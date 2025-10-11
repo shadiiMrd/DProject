@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load jalali_tags %}
+
+{% block title %}
+    آماده تحویل
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'delivery/list.css' %}">
+{% endblock %}
+
+{% block body %}
+
+    <table class="table" dir="rtl">
+        <thead>
+        <tr>
+            <th>ردیف</th>
+            <th>نام مشتری</th>
+            <th>لیست سفارشات</th>
+            <th>تعداد</th>
+            <th>وضعیت</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ order.name }}</td>
+
+                <!-- Menu Items Column -->
+                <td>
+                    {% for item in order.order_items.all %}
+                        {{ item.menu.name }}<br>
+                    {% endfor %}
+                </td>
+
+                <!-- Counts Column -->
+                <td>
+                    {% for item in order.order_items.all %}
+                        {{ item.count }}<br>
+                    {% endfor %}
+                </td>
+
+                <!-- Editable Status Dropdown -->
+                <td>
+                    <form method="post" action="{% url 'delivery:change_delivery_status' order.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-green">تحویل داده شد</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

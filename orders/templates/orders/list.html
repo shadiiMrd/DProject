@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load jalali_tags %}
+
+{% block title %}
+    سفارشات
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'orders/list.css' %}">
+{% endblock %}
+
+
+{% block body %}
+    <div class="container pt-5" dir="rtl">
+        {% include 'messages.html' %}
+        <form class="search_form">
+            {{ search_form }}
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+
+        <a href="{% url 'orders:add_order' %}" class="new_order">سفارش جدید</a>
+
+        <table class="table" dir="rtl">
+            <tr>
+                <th>ردیف</th>
+                <th>ثبت کننده</th>
+                <th>تاریخ</th>
+                <th>قیمت</th>
+            </tr>
+            {% for order in page_obj %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ order.user.first_name }} {{ order.user.last_name }}</td>
+                    <td>{{ order.created_at|to_jalali:'%Y/%m/%d' }}</td>
+                    <td>{{ order.total_price }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link"
+                   href="?page={{ page_obj.previous_page_number }}&search={{ request.GET.search }}"
+                   aria-label="Previous"
+                   style="color: #ff7f32; border-color: white;">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                <a class="page-link"
+                   href="?page={{ num }}&search={{ request.GET.search }}"
+                   style="color: #ff7f32; border-color: white;
+                          {% if page_obj.number == num %} background-color: floralwhite; color: #ff7f32; {% endif %}">
+                    {{ num }}
+                </a>
+            </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link"
+                   href="?page={{ page_obj.next_page_number }}&search={{ request.GET.search }}"
+                   aria-label="Next"
+                   style="color: #ff7f32; border-color: white;">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,130 @@
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    direction: rtl;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table th {
+    background: linear-gradient(90deg, #ff7a00, #ff9800);
+    color: white;
+    padding: 14px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.table td {
+    padding: 12px;
+    border-bottom: 1px solid #ffe0b2;
+    text-align: center;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.table tr:nth-child(even) {
+    background-color: #fff3e0;
+}
+
+.table tr:hover {
+    background-color: #ffe0b2;
+    transition: background 0.3s ease;
+}
+
+/* Add a soft pill-style for status column */
+.table td:last-child {
+    font-weight: bold;
+    padding: 10px;
+}
+
+.table td:last-child::before {
+    font-size: 0.8rem;
+}
+
+.table td:last-child {
+    color: #e65100; /* Dark orange */
+}
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
+    .table th, .table td {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+}
+
+
+.search_form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.search_form input {
+    flex: 1;
+    height: 50px;
+    padding: 0 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.search_form button {
+    height: 45px;
+    padding: 0 15px;
+    background: #ff7b00;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.search_form button:hover {
+    background: #e56a00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.search_form label {
+    display: none;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 480px) {
+    .search_form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search_form input,
+    .search_form button {
+        width: 100%;
+        height: 44px;
+    }
+}
+
+.btn-green {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.btn-green:hover {
+  background-color: #218838;
+}

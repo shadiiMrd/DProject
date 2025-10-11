@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    پروفایل
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'accounts/profile.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="profile-container" dir="rtl">
+    <h2>پروفایل</h2>
+
+    <div class="profile-field">
+        <span class="profile-label">نام:</span> {{ profile.first_name }}
+    </div>
+
+    <div class="profile-field">
+        <span class="profile-label">نام خانوادگی:</span> {{ profile.last_name }}
+    </div>
+
+    <div class="profile-field">
+        <span class="profile-label">شماره تماس:</span> {{ profile.phone_number }}
+    </div>
+
+    <div class="profile-field">
+        <span class="profile-label">ایمیل:</span> {{ profile.email }}
+    </div>
+
+    <a href="{% url 'accounts:password_reset' %}" class="profile-btn">تغییر پسورد</a>
+</div>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'orders/add.css' %}">
+{% endblock %}
+
+
+{% block body %}
+    <div class="container" dir="rtl">
+        <form class="search_form">
+            {{ search_form }}
+            <button type="submit">جستجو</button>
+        </form>
+
+        <br>
+        <form method="POST" action="{% url 'orders:add_order' %}" novalidate>
+            {% csrf_token %}
+
+            <table class="table" dir="rtl">
+                <tr>
+                    <th>انتخاب</th>
+                    <th>ردیف</th>
+                    <th>اسم</th>
+                    <th>دسته بندی</th>
+                    <th>تعداد</th>
+                    <th>قیمت</th>
+                </tr>
+                {% for menu in page_obj %}
+                    <tr>
+                        <td><input type="checkbox" name="selected_items" value="{{ menu.id }}"></td>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ menu.name }}</td>
+                        <td>{{ menu.category }}</td>
+                        <td><input type="number" name="count_{{ menu.id }}" min="1" value="1"></td>
+                        <td>{{ menu.price }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="?page={{ page_obj.previous_page_number }}&search={{ request.GET.search }}"
+                               aria-label="Previous"
+                               style="color: #ff7f32; border-color: #ff7f32;">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                            <a class="page-link"
+                               href="?page={{ num }}&search={{ request.GET.search }}"
+                               style="color: #ff7f32; border-color: #ff7f32;
+                                       {% if page_obj.number == num %}; border-color: #ff7f32;{% endif %}">
+                                {{ num }}
+                            </a>
+                        </li>
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="?page={{ page_obj.next_page_number }}&search={{ request.GET.search }}"
+                               aria-label="Next"
+                               style="color: #ff7f32; border-color: #ff7f32;">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+
+            <br>
+
+            <div class="form-group">
+                {% if add_order_form.name.errors %}
+                    {% for error in add_order_form.name.errors %}
+                        <small class="invalid-feedback d-block" style="margin-bottom: 8px;color: red">{{ error }}</small>
+                    {% endfor %}
+                {% endif %}
+                {{ add_order_form.name }}
+            </div>
+
+            <div class="form-group">
+                {% if add_order_form.phone_number.errors %}
+                    {% for error in add_order_form.phone_number.errors %}
+                        <small class="invalid-feedback d-block" style="margin-bottom: 8px; color: red">{{ error }}</small>
+                    {% endfor %}
+                {% endif %}
+                {{ add_order_form.phone_number }}
+            </div>
+
+            <div class="form-group">
+                {% if add_order_form.table.errors %}
+                    {% for error in add_order_form.table.errors %}
+                        <small class="invalid-feedback d-block" style="margin-bottom: 8px;color: red">{{ error }}</small>
+                    {% endfor %}
+                {% endif %}
+                {{ add_order_form.table }}
+            </div>
+            <br>
+            <button type="submit">افزودن</button>
+        </form>
+    </div>
+
+{% endblock %}

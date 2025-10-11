@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    پروفایل
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'accounts/edit_profile.css' %}">
+{% endblock %}
+
+{% block body %}
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form }}
+<button type="submit">ویرایش</button>
+</form>
+{% endblock %}

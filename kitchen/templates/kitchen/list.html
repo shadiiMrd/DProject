@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load jalali_tags %}
+
+{% block title %}
+    آشپزخانه
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'kitchen/list.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div class="container pt-5" dir="rtl">
+        <form class="search_form">
+            {{ search_form }}
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+
+        <table class="table" dir="rtl">
+            <thead>
+            <tr>
+                <th>ردیف</th>
+                <th>نام مشتری</th>
+                <th>لیست سفارشات</th>
+                <th>تعداد</th>
+                <th>وضعیت</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ order.name }}</td>
+
+                    <!-- Menu Items Column -->
+                    <td>
+                        {% for item in order.order_items.all %}
+                            {{ item.menu.name }}<br>
+                        {% endfor %}
+                    </td>
+
+                    <!-- Counts Column -->
+                    <td>
+                        {% for item in order.order_items.all %}
+                            {{ item.count }}<br>
+                        {% endfor %}
+                    </td>
+
+                    <!-- Editable Status Dropdown -->
+                    <td>
+                        <form method="post" action="{% url 'kitchen:kitchen_change_status' order.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-green">تهیه شد</button>
+                        </form>
+
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}
