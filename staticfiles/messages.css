@@ -1,0 +1,38 @@
+.container{
+    margin-top: 12px;
+}
+.custom-alert {
+    position: absolute;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+}
+
+.close-button {
+    position: absolute;
+    text-align: right;
+    top: 5px;
+    right: 5px;
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #555;
+}
+
+.close-button:hover {
+    color: #000;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}

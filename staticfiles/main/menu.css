@@ -1,0 +1,157 @@
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.menu-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    padding: 12px 25px;
+    background: #d7ccc8;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover, .tab-btn.active {
+    background: #5d4037;
+    color: #fff;
+}
+
+.category {
+    margin-bottom: 50px;
+}
+
+.category-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: #5d4037;
+    border-bottom: 2px solid #d7ccc8;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+.menu-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.menu-item {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+}
+
+.item-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.menu-item:hover .item-image img {
+    transform: scale(1.05);
+}
+
+.item-info {
+    padding: 20px;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: #5d4037;
+}
+
+.item-price {
+    font-weight: 700;
+    color: #5d4037;
+    font-size: 1.2rem;
+}
+
+.item-desc {
+    color: #795548;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.item-badge {
+    display: inline-block;
+    background: #8d6e63;
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 3px 10px;
+    border-radius: 15px;
+    margin-top: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 40px;
+    color: #795548;
+    border-top: 1px solid #d7ccc8;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .menu-tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tab-btn {
+        width: 80%;
+        margin-bottom: 10px;
+    }
+
+    .menu-items {
+        grid-template-columns: 1fr;
+    }
+}
